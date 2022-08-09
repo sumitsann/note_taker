@@ -20,6 +20,11 @@ function filterByQuery(query, tasksArray) {
   return filteredResults;
 }
 
+function findById(id, tasksArray) {
+  const result = tasksArray.filter((task) => task.id === id)[0];
+  return result;
+}
+
 app.get("/api/tasks", (req, res) => {
   let results = tasks;
   console.log(req.query);
@@ -28,6 +33,15 @@ app.get("/api/tasks", (req, res) => {
     results = filterByQuery(req.query, results);
   }
   res.json(results);
+});
+
+app.get("/api/tasks/:id", (req, res) => {
+  const result = findById(req.params.id, tasks);
+  if (result) {
+    res.json(result);
+  } else {
+    res.send(404);
+  }
 });
 
 app.listen(PORT, () => {
