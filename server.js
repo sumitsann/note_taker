@@ -4,6 +4,8 @@ const path = require("path");
 const express = require("express");
 const app = express();
 
+app.use(express.static("public"));
+
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
@@ -59,6 +61,10 @@ function validateTask(task) {
   return true;
 }
 
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "./Develop/public/index.html"));
+});
+
 app.get("/api/tasks", (req, res) => {
   let results = tasks;
   console.log(req.query);
@@ -87,6 +93,25 @@ app.post("/api/tasks", (req, res) => {
     const task = createNewTask(req.body, tasks);
     res.json(task);
   }
+});
+
+app.delete("/api/tasks/:id", (req, res) => {
+  let savedTasks = JSON.parse(fs.readFileSync("./Develop/db/db.json", "utf-8"));
+  taskId = req.params.id;
+  let newID = 0;
+
+  console.log("Deleting task with the ID: " + taskId);
+
+  savedTasks = savedTasks.filter((currentTask) => {
+    return currentTask.id != taskId;
+  });
+  for (currentTask of savedTasks) {
+    currentTask.id = newID.toString();
+    newID++;
+  }
+
+  fs.writeFileSync("./Develop/db/db.json", JSON.stringify(savedTasks));
+  res.json(savedTasks);
 });
 
 app.listen(PORT, () => {
