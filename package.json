@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/sumitsann/note_taker/issues"
   },
-  "homepage": "https://github.com/sumitsann/note_taker#readme"
+  "homepage": "https://github.com/sumitsann/note_taker#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }

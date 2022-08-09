@@ -1,6 +1,14 @@
-[
+{
+  "tasks": [
     {
-        "title":"Test Title",
-        "text":"Test text"
+      "id": "0",
+      "title": "Homework",
+      "text": "Do the homework assignment in the web development module"
+    },
+    {
+      "id": "1",
+      "title": "Chicken",
+      "text": "Make the meal for the guests"
     }
-]
+  ]
+}
