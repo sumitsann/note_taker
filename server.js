@@ -62,7 +62,11 @@ function validateTask(task) {
 }
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "./Develop/public/index.html"));
+  res.sendFile(path.join(__dirname, "./public/index.html"));
+});
+
+app.get("/notes", function (req, res) {
+  res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
 
 app.get("/api/tasks", (req, res) => {
