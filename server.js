@@ -30,7 +30,12 @@ app.get("*", (req, res) => {
 
 function createNewNote(body, notesArrayElements) {
   const newNote = body;
-  notesArrayElements.push(newNote);
+  if (!Array.isArray(notesArrayElements)) notesArrayElements = [];
+
+  if (notesArrayElements.length === 0) notesArrayElements.push(0);
+
+  body.id = notesArrayElements[0];
+  notesArrayElements[0]++;
 
   notesArrayElements.push(newNote);
   fs.writeFileSync(
@@ -45,7 +50,7 @@ app.post("/api/notes", (req, res) => {
   res.json(newNote);
 });
 
-function deleteNoteByID(id, notesArrayElements) {
+function deleteNote(id, notesArrayElements) {
   for (let i = 0; i < notesArrayElements.length; i++) {
     let note = notesArrayElements[i];
 
@@ -62,10 +67,10 @@ function deleteNoteByID(id, notesArrayElements) {
 }
 
 app.delete("/api/notes/:id", (req, res) => {
-  deleteNoteByID(req.params.id, notesList);
+  deleteNote(req.params.id, notesList);
   res.json(true);
 });
 
 app.listen(PORT, () => {
-  console.log("API server now on port: " + PORT);
+  console.log(`API server now on port ${PORT}!`);
 });
