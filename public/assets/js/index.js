@@ -79,7 +79,7 @@ const handleNoteSave = () => {
 
 // Delete the clicked note
 const handleNoteDelete = (e) => {
-  // prevents the click listener for the list from being called when the button inside of it is clicked
+  // Prevents the click listener for the list from being called when the button inside of it is clicked
   e.stopPropagation();
 
   const note = e.target;
@@ -102,9 +102,8 @@ const handleNoteView = (e) => {
   renderActiveNote();
 };
 
-// Sets the activeNote to an empty object and allows the user to enter a new note
+// Sets the activeNote to and empty object and allows the user to enter a new note
 const handleNewNoteView = (e) => {
-  e.preventDefault();
   activeNote = {};
   renderActiveNote();
 };
@@ -132,6 +131,7 @@ const renderNoteList = async (notes) => {
     liEl.classList.add("list-group-item");
 
     const spanEl = document.createElement("span");
+    spanEl.classList.add("list-item-title");
     spanEl.innerText = text;
     spanEl.addEventListener("click", handleNoteView);
 
