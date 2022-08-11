@@ -28,8 +28,8 @@ Sumit Ojha
 
 ## Questions
 
-sumit.ojha.dev@gmail.com
-https://github.com/sumitsann
+* sumit.ojha.dev@gmail.com
+* https://github.com/sumitsann
 
 ## Website
 https://note-taker-147181.herokuapp.com/
