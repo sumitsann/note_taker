@@ -24,10 +24,6 @@ app.get("/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./public/index.html"));
-});
-
 function createNewNote(body, notesArrayElements) {
   const newNote = body;
   if (!Array.isArray(notesArrayElements)) notesArrayElements = [];
@@ -72,5 +68,5 @@ app.delete("/api/notes/:id", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`API server now on port ${PORT}!`);
+  console.log("Server is running on port: " + PORT);
 });
